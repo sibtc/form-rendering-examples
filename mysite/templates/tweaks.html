@@ -1,0 +1,36 @@
+{% load widget_tweaks %}<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple is Better Than Complex</title>
+</head>
+<body>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+
+    <table border="1">
+      {% for field in form.visible_fields %}
+        <tr>
+          <th>{{ field.label_tag }}</th>
+          <td>
+            {{ field.errors }}
+            {% render_field field style="border: 2px dashed red;" placeholder=field.name %}
+            {{ field.help_text }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>

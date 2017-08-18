@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple is Better Than Complex</title>
+</head>
+<body>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {{ form.source.errors }}
+    {{ form.source }}
+
+    <table border="1">
+
+        <tr>
+          <th>{{ form.name.label_tag }}</th>
+          <td>
+            {{ form.name.errors }}
+            {{ form.name }}
+            {{ form.name.help_text }}
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ form.email.label_tag }}</th>
+          <td>
+            {{ form.email.errors }}
+            {{ form.email }}
+          </td>
+        </tr>
+
+        <tr>
+          <th>{{ form.message.label_tag }}</th>
+          <td>
+            {{ form.message.errors }}
+            {{ form.message }}
+            <br />
+            {{ form.message.help_text }}
+          </td>
+        </tr>
+
+    </table>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
